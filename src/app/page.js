@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const Home = () => {
   const [username, setUsername] = useState('');
@@ -14,6 +15,17 @@ const Home = () => {
       router.push(`/${username}`);
     }
   };
+
+  useEffect(() => {
+    const storedCardCount = localStorage.getItem('cardCount');
+    if (storedCardCount) {
+      setCardCount(parseInt(storedCardCount, 10));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cardCount', cardCount);
+  }, [cardCount]);
 
   return (
     <div className="min-h-screen flex items-center justify-center ">
