@@ -38,13 +38,13 @@ const ProfileCard = ({ params }) => {
     }, [username]);
 
     if (error) {
-        return <p>{error}</p>;
+        return <p className="text-red-500">{error}</p>;
     }
 
     const userWebsite = user.blog.startsWith('http') ? user.blog : `https://${user.blog}`;
 
     return (
-        <div className="container">
+        <div className="container mx-auto p-4">
             <div className="max-w-sm mx-auto bg-gradient-to-r from-gray-800 to-gray-900 bg-opacity-60 backdrop-blur-md border border-gray-700 rounded-lg shadow-lg p-6 text-white">
                 <ProfileHeader user={user} />
                 <ProfileBio bio={user.bio} />
@@ -60,25 +60,25 @@ const ProfileCard = ({ params }) => {
 };
 
 const ProfileHeader = ({ user }) => (
-    <div className="flex items-center mb-4">
+    <div className="flex items-center mb-6">
         <a href={`https://github.com/${user.login}`} target="_blank" rel="noopener noreferrer" className="flex items-center">
-            <img src={user.avatar_url} alt={user.name} className="w-20 h-20 rounded-full border-4 border-yellow-400 shadow-lg" />
+            <img src={user.avatar_url} alt={user.name} className="w-24 h-24 rounded-full border-4 border-yellow-400 shadow-lg" />
             <div className="ml-4">
                 <h1 className="text-3xl font-bold">{user.name || user.login}</h1>
                 <p className="text-lg text-yellow-300">@{user.login}</p>
             </div>
         </a>
-    </div >
+    </div>
 );
 
 const ProfileBio = ({ bio }) => (
-    <div className="mb-4">
+    <div className="mb-6">
         <p className="text-gray-300">{bio || "No bio available"}</p>
     </div>
 );
 
 const ProfileStats = ({ user }) => (
-    <div className="grid grid-cols-3 gap-4 mb-4">
+    <div className="grid grid-cols-3 gap-4 mb-6">
         <StatCard title="Followers" value={user.followers} icon={<FaUsers />} bgColor="bg-yellow-600" />
         <StatCard title="Following" value={user.following} icon={<FaCodeBranch />} bgColor="bg-green-600" />
         <StatCard title="Public Repos" value={user.public_repos} icon={<FaStar />} bgColor="bg-blue-600" />
@@ -86,17 +86,17 @@ const ProfileStats = ({ user }) => (
 );
 
 const StatCard = ({ title, value, icon, bgColor }) => (
-    <div className={`text-center ${bgColor} p-2 rounded-lg shadow flex flex-col items-center`}>
-        <div className="text-2xl mb-1">{icon}</div>
-        <strong>{title}</strong>
-        <p>{value}</p>
+    <div className={`text-center ${bgColor} p-4 rounded-lg shadow flex flex-col items-center`}>
+        <div className="text-2xl mb-2">{icon}</div>
+        <strong className="text-lg">{title}</strong>
+        <p className="text-xl">{value}</p>
     </div>
 );
 
 const ProfileLocation = ({ location }) => (
-    <div className="mb-4 flex items-center justify-between">
+    <div className="mb-6 flex items-center justify-between">
         <div>
-            <strong>Location</strong>
+            <strong className="text-lg">Location</strong>
             <p className="text-gray-300 flex items-center">
                 <FaMapMarkerAlt className="mr-2" />
                 {location || "N/A"}
@@ -114,8 +114,8 @@ const ProfileLocation = ({ location }) => (
 );
 
 const ProfileWebsite = ({ blog, userWebsite }) => (
-    <div className="mt-2">
-        <strong>Website</strong>
+    <div className="mt-4">
+        <strong className="text-lg">Website</strong>
         <p className="flex items-center">
             <FaGlobe className="mr-2" />
             <a href={userWebsite} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
@@ -126,24 +126,24 @@ const ProfileWebsite = ({ blog, userWebsite }) => (
 );
 
 const ProfileAdditionalStats = ({ user }) => (
-    <div className="grid grid-cols-2 gap-4 mb-4">
+    <div className="grid grid-cols-2 gap-4 mb-6">
         <StatCard title="Total Stars" value={user.totalStars} icon={<FaStar />} bgColor="bg-red-600" />
-        <StatCard title="Total Repositories" value={user.reposCount} icon={<FaCodeBranch />} bgColor="bg-purple-500" />
+        <StatCard title="Total Forks" value={user.totalForks} icon={<FaCodeBranch />} bgColor="bg-purple-500" />
     </div>
 );
 
 const ProfileSkills = ({ skills }) => (
-    <div className="mt-4">
+    <div className="mt-6">
         <h2 className="text-xl font-semibold">Programming Languages</h2>
         <ul className="grid grid-cols-2 gap-2 mt-2">
             {Array.isArray(skills) && skills.length > 0 ? (
                 skills.map((skill, index) => (
-                    <li key={index} className="bg-blue-700 text-center p-1 rounded-lg">
+                    <li key={index} className="bg-blue-700 text-center p-2 rounded-lg">
                         {skill}
                     </li>
                 ))
             ) : (
-                <li className="bg-gray-700 text-center p-1 rounded-lg">
+                <li className="bg-gray-700 text-center p-2 rounded-lg">
                     No skills available
                 </li>
             )}
@@ -153,7 +153,7 @@ const ProfileSkills = ({ skills }) => (
 
 const ShareButton = ({ user }) => (
     <button
-        className="share-button mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-800 transition-all duration-300 flex items-center justify-center"
+        className="share-button mt-6 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-800 transition-all duration-300 flex items-center justify-center"
         onClick={() => shareOnSocial(user)}
     >
         <FaTwitter className="mr-2" />

@@ -2,14 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #a4d2d8;
     --foreground: #ededed;
   }
 }
@@ -24,28 +19,4 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.profile-card {
-  border: 1px solid #ddd;
-  padding: 2rem;
-  border-radius: 10px;
-
-}
-
-input {
-  padding: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
 }
