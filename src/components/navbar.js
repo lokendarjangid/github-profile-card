@@ -10,6 +10,7 @@ const Navbar = () => {
                 <a href="https://lokendarjangidweb.vercel.app">Lokendar Jangid</a>
             </div>
         </div>
+
     );
 };
 
